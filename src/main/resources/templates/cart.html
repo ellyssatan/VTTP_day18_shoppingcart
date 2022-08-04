@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <style>
+        .row {
+            display: flex;
+        }
+        
+        .column {
+            flex: 50%;
+        }
+
+        td {
+            border: 1px solid black;
+            width: 50%;
+            padding: 10px;
+            
+        }
+    </style>
+</head>
+<body> 
+    <h1><span data-th-text="${name}"></span>'s Shopping Cart</h1>
+       
+    
+    <form action="/cart" method="POST">
+       
+        <div class="row">
+            <div class="column"> 
+                <table>
+                    <tr>
+                        <td class="cart">
+                            <div>
+                                <h2>Cart contents</h2>
+                                <input type="hidden" name="name" data-th-value="${name}">
+                                <input type="hidden" name="contents" data-th-value="${contents}">
+                                
+                                <div data-th-each="c : ${cart}">
+                                        <span data-th-text="${c}"></span>
+                                </div>
+                                
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="column">
+                <label for="item">Item:</label>
+                <input type="text" name="item" size="20" placeholder="Item to add" required>
+                <button type="submit">Add to cart</button>
+                    
+            </div>
+        </div>
+    </form>
+        
+</body>
+</html>
