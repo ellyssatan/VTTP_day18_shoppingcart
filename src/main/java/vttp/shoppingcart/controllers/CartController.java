@@ -36,32 +36,30 @@ public class CartController {
     }
 
    @PostMapping(path = {"/cart"})
-    public String postCart(@RequestBody MultiValueMap<String, String> form, Model model) {
-        
-        String name = form.getFirst("name");
-        System.out.printf(">>> username: %s", name);
+    public String postCart(@RequestBody MultiValueMap<String, String> form, Model model, HttpSession sess) {
         
         List<String> cart = new LinkedList<>();
 
-        String c = form.getFirst("contents");
-        System.out.printf(">>> contents: %s", c);
-        if (!isNull(c)) {
-            cart = cSvc.deserialise(c);
-        }
-        System.out.println(cart);
-        String item = form.getFirst("item");
-        System.out.printf(">>> item: %s", item);
-        if (!isNull(item)) {
-            cart.add(item);
-        }
+        String name = form.getFirst("name");
+        
+        if (!isNull(name)) {
+			// new session
+			System.out.println("name not in session");
+			sess.setAttribute("name", name);
+			// cart = new LinkedList<>();
+			sess.setAttribute("cart", cart);
 
-        System.out.println("cart after: " + cart);
-        System.out.println(">> serialize: " + cSvc.serialise(cart));
+		} 
 
-        model.addAttribute("contents", cSvc.serialise(cart));
+		name = (String) sess.getAttribute("name");
+		cart = (List<String>) sess.getAttribute("cart");
+		String item = form.getFirst("item");
+		if (!isNull(item))
+			cart.add(item);
+
+
         model.addAttribute("cart", cart);
         model.addAttribute("name", name);
-        model.addAttribute("user", name);
         return "cart";
     }
 
