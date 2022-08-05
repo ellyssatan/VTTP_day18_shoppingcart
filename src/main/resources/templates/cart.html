@@ -36,12 +36,23 @@
                             <div>
                                 <h2>Cart contents</h2>
                                 <input type="hidden" name="name" data-th-value="${name}">
-                                <input type="hidden" name="contents" data-th-value="${contents}">
                                 
                                 <div data-th-each="c : ${cart}">
                                         <span data-th-text="${c}"></span>
                                 </div>
-                                
+                                <label for="quantity">Quantity:</label>
+							    <select id="quantity" name="quantity">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+							</select>
                             </div>
                         </td>
                     </tr>

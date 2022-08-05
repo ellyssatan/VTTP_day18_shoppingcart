@@ -15,10 +15,7 @@ public class CartService {
     }
     
     public void populate(String s) {
-        String[] item = s.split(",");
-        for (String i : item) {
-            cart.add(i);
-        }
+
     }
 
     public String serialise(List<String> c) {
