@@ -26,7 +26,7 @@ public class CartRepository {
             return Optional.empty();
         }
 
-        // Create new list of items
+        // Retrieve items in cart if cart exists
         List<Item> contents = new LinkedList<>();
         ListOperations<String, String> listOps = redisTemplate.opsForList();
         // returns how many items in the cart
@@ -39,7 +39,6 @@ public class CartRepository {
         Cart cart = new Cart(name);
         cart.setContents(contents);
         return Optional.of(cart);
-
     }
 
     public void save(Cart cart) {

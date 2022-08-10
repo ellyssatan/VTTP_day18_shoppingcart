@@ -55,7 +55,6 @@ public class Cart {
         Reader reader = new StringReader(jsonStr);
         JsonReader jr = Json.createReader(reader);
         JsonObject c = jr.readObject();
-        // Why .getString?
         Cart cart = new Cart(c.getString("name"));
         List<Item> contents = c.getJsonArray("contents").stream()
                             .map(v -> (JsonObject) v )
